@@ -1,0 +1,170 @@
+/*============================================================
+  Robert's Book Store — shared stylesheet
+  Used by: fiction.php, classics.php, scifi.php,
+           mystery.php, nonfiction.php
+============================================================ */
+
+body {
+    background-color: #efe9dc;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ---------- Page wrapper ---------- */
+.container.page_border {
+    max-width: 100%;
+}
+
+.page_border {
+    width: 100%;
+    float: left;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 40px 60px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.store_title {
+    text-align: center;
+    font-size: 62px;
+    font-family: Algerian, serif;
+    font-weight: bold;
+    color: #2c2c2c;
+    letter-spacing: 2px;
+    margin: 10px 0 25px;
+}
+
+/* ---------- Top bar (SEARCH + genre dropdown) ---------- */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.topbar .btn {
+    font-weight: bold;
+}
+
+.genre_select {
+    max-width: 260px;
+}
+
+/* ---------- Book picture grid ---------- */
+.pic_group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.pic_option {
+    width: 170px;
+    text-align: center;
+    background-color: #fff;
+    border: 10px solid #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.pic_option:hover {
+    box-shadow: 0 10px 14px -6px rgba(0, 0, 0, 0.45);
+    transform: translateY(-3px);
+}
+
+.pic_option .pic_img {
+    width: 150px;
+    height: 180px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pic_option img {
+    height: 100%;
+    width: auto;
+}
+
+.item_label {
+    padding: 8px 6px 10px;
+    line-height: 1.3;
+}
+
+.item_label .book_title {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    min-height: 36px;
+}
+
+.item_label .book_price {
+    display: block;
+    font-weight: bold;
+    color: #c0392b;
+    font-size: 15px;
+}
+
+/* ---------- Order section ---------- */
+.order-section {
+    margin-top: 45px;
+    border-top: 3px solid #2c3e50;
+    padding-top: 25px;
+}
+
+.order-section h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 8px;
+}
+
+.order-details .form-group label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.radio_label {
+    display: block;
+    font-weight: 500 !important;
+    margin-bottom: 6px;
+    padding-left: 2px;
+}
+
+.action-btns .btn {
+    font-weight: 700;
+    margin-right: 6px;
+    margin-bottom: 8px;
+}
+
+/* ---------- Calculator pad ---------- */
+.calc_pad {
+    margin-top: 22px;
+}
+
+.calc_pad h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-width: 260px;
+}
+
+.calc-grid .btn {
+    font-weight: 700;
+    padding: 10px;
+}
+
+.calc-grid .btn-enter {
+    grid-column: 1 / -1;
+}
