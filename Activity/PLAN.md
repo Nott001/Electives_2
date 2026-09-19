@@ -34,7 +34,7 @@ Activity/
 ├── css/
 │   └── book_pos.css            # shared stylesheet (already built)
 ├── fiction.php                 # Page 1 — COMPLETE, using real images below
-└── robert_pos.php               # earlier perfume-shop practice exercise, unrelated to this activity — leave as is
+
 ```
 
 ### Available real images in `book_images/`
@@ -125,7 +125,7 @@ On every one of the 5 pages, verify the dropdown contains all 5 `<option>` value
 
 ## Task 5 — Final verification pass
 
-1. `docker ps` — confirm `robert_pos_web`, `robert_pos_db`, `robert_pos_pma` are all running.
+1. `docker ps` — confirm `book_store_web`, `book_store_db`, `book_store_pma` are all running.
 2. Visit each of the 5 URLs and confirm:
    - Correct title and page-specific images/labels
    - Tooltips work on hover

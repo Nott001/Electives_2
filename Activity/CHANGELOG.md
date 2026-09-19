@@ -22,4 +22,3 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) — dated, grou
 
 ### Known limitations
 - Some padding covers on Sci-Fi/Mystery/Non-Fiction pages do not match their genre (e.g. *The Mother, The Daughter* under Sci-Fi) due to the limited cover set. Replace these with genre-accurate covers as they become available.
-- `robert_pos.php` and `css/robert_pos.css` are from the earlier perfume-shop practice exercise and are untouched, as the plan specifies.

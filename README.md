@@ -64,11 +64,7 @@ Electives_2/
     ├── scifi.php                 # Page 3 — Sci-Fi (10 books)
     ├── mystery.php               # Page 4 — Mystery (10 books)
     ├── nonfiction.php            # Page 5 — Non-Fiction (10 books)
-    ├── robert_pos.php            # Earlier perfume-shop practice exercise
-    ├── book_images/              # Book cover images
-    ├── css/
-    │   ├── book_pos.css          # Shared stylesheet for all 5 genre pages
-    │   └── robert_pos.css        # Stylesheet for the practice exercise
+
     └── CHANGELOG.md
 ```
 

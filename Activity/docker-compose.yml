@@ -1,7 +1,7 @@
 services:
   web:
     build: .
-    container_name: robert_pos_web
+    container_name: book_store_web
     ports:
       - "8080:80"
     volumes:
@@ -11,17 +11,17 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: robert_pos_db
+    container_name: book_store_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
-      MYSQL_DATABASE: robert_pos
+      MYSQL_DATABASE: book_store
     volumes:
       - db_data:/var/lib/mysql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: robert_pos_pma
+    container_name: book_store_pma
     restart: always
     ports:
       - "8081:80"
