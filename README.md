@@ -88,4 +88,4 @@ Electives_2/
 
 All 5 genre pages are **complete** and functional. Calculator logic, SAVE/UPDATE/NEW button wiring, and database integration are intentionally out of scope for this lesson.
 
-See [CHANGELOG.md](Activity/CHANGELOG.md) for details.
+See [CHANGELOG.md](Activity/CHANGELOG.md) for more information.
