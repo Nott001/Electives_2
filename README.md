@@ -27,7 +27,14 @@ Every page shares the same structure and styling (`css/book_pos.css`) and differ
 - **Genre dropdown** with automatic navigation via `window.location.href`
 - **Order form** with fields: Name of Item, Quantity, Price, Discount Amount, Discounted Amount, Total Quantity, Total Discount Given, Total Discounted Amount, Cash Given, Change
 - **Discount options**: Senior Citizen, With Disc. Card, Employee Disc., No Discount
-- **Calculator pad** (digit/operator grid + ENTER)
+- **Working POS logic** (`js/book_pos.js`, shared by all pages):
+  - Click a book cover to fill in its name and price
+  - Discount Amount / Discounted Amount update live — Senior Citizen 20%, Disc. Card 10%, Employee 15%
+  - **SAVE** adds the item to the Order List and updates the totals
+  - **UPDATE** — click a row in the Order List, edit it, then press UPDATE
+  - **NEW** clears the whole order for a new customer
+  - **CALCULATE CHANGE** computes Cash Given − Total Discounted Amount (warns if cash is short)
+- **Calculator pad** (digit/operator grid + ENTER, display, C to clear) — evaluates with normal `* /` before `+ -` precedence; ENTER also sends the result to the last-focused Quantity / Price / Cash Given field
 - **Tooltip** hover effects on book covers (Bootstrap tooltips)
 - **Dockerized** environment — no XAMPP or local PHP install needed
 
@@ -64,6 +71,8 @@ Electives_2/
     ├── scifi.php                 # Page 3 — Sci-Fi (10 books)
     ├── mystery.php               # Page 4 — Mystery (10 books)
     ├── nonfiction.php            # Page 5 — Non-Fiction (10 books)
+    ├── css/book_pos.css          # Shared stylesheet
+    ├── js/book_pos.js            # Shared order form / calculator logic
 
     └── CHANGELOG.md
 ```
@@ -86,6 +95,6 @@ Electives_2/
 
 ## Status
 
-All 5 genre pages are **complete** and functional. Calculator logic, SAVE/UPDATE/NEW button wiring, and database integration are intentionally out of scope for this lesson.
+All 5 genre pages are **complete** and functional, including the order form buttons and calculator (client-side only). Database integration (persisting orders to MySQL) is not implemented yet.
 
 See [CHANGELOG.md](Activity/CHANGELOG.md) for more information.

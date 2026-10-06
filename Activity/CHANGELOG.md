@@ -3,6 +3,20 @@
 All notable changes to this project are documented in this file.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) — dated, grouped by version.
 
+## [1.1.0] - 2026-10-06
+
+### Added
+- **`js/book_pos.js`** — shared order form logic, included by all 5 pages:
+  - Clicking a book cover fills Name of an Item / Price (Quantity defaults to 1).
+  - Discount Amount and Discounted Amount compute live from Quantity × Price and the selected discount (Senior Citizen 20%, With Disc. Card 10%, Employee Disc. 15%, No Discount 0%).
+  - **SAVE** adds the item to a new Order List table and updates Total Quantity, Total Discount Given and Total Discounted Amount.
+  - **UPDATE** edits the Order List row that was clicked.
+  - **NEW** clears the order for a new transaction.
+  - **CALCULATE CHANGE** computes Cash Given − Total Discounted Amount, with validation messages.
+  - Calculator pad now works: display + **C** clear button, operator precedence, division-by-zero handling (no `eval`); ENTER sends the result to the last-focused Quantity / Price / Cash Given field.
+- Order List table, message area, and calculator display styles in `css/book_pos.css`.
+- `TestPosWiring` tests in `tests/test_pages.py`.
+
 ## [1.0.0] - 2026-09-08
 
 ### Added

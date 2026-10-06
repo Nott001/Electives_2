@@ -168,3 +168,38 @@ body {
 .calc-grid .btn-enter {
     grid-column: 1 / -1;
 }
+
+/* ---------- Calculator display ---------- */
+.calc-display-group {
+    max-width: 260px;
+    margin-bottom: 8px;
+}
+
+.calc-display {
+    text-align: right;
+    font-family: "Courier New", monospace;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #f8f9fa !important;
+}
+
+.calc_pad h4 small {
+    font-size: 13px;
+    color: #6c757d;
+    font-weight: normal;
+}
+
+/* ---------- Order list ---------- */
+.order-list {
+    font-size: 14px;
+}
+
+.order-list tbody tr[data-index] {
+    cursor: pointer;
+}
+
+.order-list .empty-row td {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}

@@ -186,6 +186,34 @@ class TestOrderForm(unittest.TestCase):
                 self.assertIn("$('[data-toggle=\"tooltip\"]').tooltip()", html)
 
 
+class TestPosWiring(unittest.TestCase):
+    def test_pos_script_exists(self):
+        self.assertTrue(os.path.isfile(os.path.join(BASE_DIR, "js", "book_pos.js")))
+
+    def test_page_includes_pos_script(self):
+        for genre in GENRES:
+            with self.subTest(genre=genre):
+                self.assertIn('<script src="js/book_pos.js"></script>', read_page(genre))
+
+    def test_page_has_wired_element_ids(self):
+        ids = ["btn_calculate", "btn_new", "btn_save", "btn_update",
+               "calc_display", "calc_clear", "calc_target", "order_msg", "order_list"]
+        for genre in GENRES:
+            with self.subTest(genre=genre):
+                html = read_page(genre)
+                for element_id in ids:
+                    self.assertIn(f'id="{element_id}"', html,
+                                  f"{genre}.php missing id={element_id}")
+
+    def test_script_references_existing_ids(self):
+        with open(os.path.join(BASE_DIR, "js", "book_pos.js")) as f:
+            js = f.read()
+        html = read_page("fiction")
+        for element_id in set(re.findall(r'\$\("#(\w+)', js)):
+            with self.subTest(id=element_id):
+                self.assertIn(f'id="{element_id}"', html)
+
+
 class TestPageConsistency(unittest.TestCase):
     def test_all_pages_have_same_order_section_structure(self):
         pages_content = {g: read_page(g) for g in GENRES}

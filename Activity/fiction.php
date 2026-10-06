@@ -210,6 +210,22 @@
                     <label for="change">Change</label>
                     <input type="text" class="form-control" id="change" readonly>
                 </div>
+                <h3 class="mt-4">Order List</h3>
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover order-list" id="order_list">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Item</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Discount</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
             <div class="col-md-5 discount-options">
                 <h3>Order Discount Options</h3>
@@ -219,14 +235,21 @@
                     <label class="radio_label"><input type="radio" name="discount" value="employee"> Employee Disc.</label>
                     <label class="radio_label"><input type="radio" name="discount" value="none" checked> No Discount</label>
                 </div>
+                <div id="order_msg"></div>
                 <div class="action-btns">
-                    <button type="button" class="btn btn-success">CALCULATE CHANGE</button>
-                    <button type="button" class="btn btn-primary">NEW</button>
-                    <button type="button" class="btn btn-warning">SAVE</button>
-                    <button type="button" class="btn btn-info">UPDATE</button>
+                    <button type="button" class="btn btn-success" id="btn_calculate">CALCULATE CHANGE</button>
+                    <button type="button" class="btn btn-primary" id="btn_new">NEW</button>
+                    <button type="button" class="btn btn-warning" id="btn_save">SAVE</button>
+                    <button type="button" class="btn btn-info" id="btn_update">UPDATE</button>
                 </div>
                 <div class="calc_pad">
-                    <h4>Calculator</h4>
+                    <h4>Calculator <small id="calc_target"></small></h4>
+                    <div class="input-group calc-display-group">
+                        <input type="text" class="form-control calc-display" id="calc_display" readonly placeholder="0">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-danger" id="calc_clear">C</button>
+                        </div>
+                    </div>
                     <div class="calc-grid">
                         <button type="button" class="btn btn-dark btn-enter">ENTER</button>
                         <button type="button" class="btn btn-secondary">/</button>
@@ -250,6 +273,9 @@
         </div>
     </div>
 </div>
+
+<!-- Order form, action buttons and calculator logic -->
+<script src="js/book_pos.js"></script>
 
 <script>
   $(document).ready(function(){
