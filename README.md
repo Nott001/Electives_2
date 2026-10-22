@@ -27,14 +27,14 @@ Every page shares the same structure and styling (`css/book_pos.css`) and differ
 - **Genre dropdown** with automatic navigation via `window.location.href`
 - **Order form** with fields: Name of Item, Quantity, Price, Discount Amount, Discounted Amount, Total Quantity, Total Discount Given, Total Discounted Amount, Cash Given, Change
 - **Discount options**: Senior Citizen, With Disc. Card, Employee Disc., No Discount
-- **Working POS logic** (`js/book_pos.js`, shared by all pages):
-  - Click a book cover to fill in its name and price
-  - Discount Amount / Discounted Amount update live — Senior Citizen 20%, Disc. Card 10%, Employee 15%
+- **Working POS logic in PHP** (`includes/book_pos.php`, required at the top of every page). The order form posts back to the page and the order is kept in the PHP session, so it carries over between genre pages:
+  - Click a book cover to fill in its name and price (`js/book_pos.js` only fills the fields and submits — no math in JavaScript)
+  - Discount Amount / Discounted Amount are computed by PHP — Senior Citizen 20%, Disc. Card 10%, Employee 15%
   - **SAVE** adds the item to the Order List and updates the totals
   - **UPDATE** — click a row in the Order List, edit it, then press UPDATE
   - **NEW** clears the whole order for a new customer
   - **CALCULATE CHANGE** computes Cash Given − Total Discounted Amount (warns if cash is short)
-- **Calculator pad** (digit/operator grid + ENTER, display, C to clear) — evaluates with normal `* /` before `+ -` precedence; ENTER also sends the result to the last-focused Quantity / Price / Cash Given field
+- **Calculator pad**, pinned in a sticky sidebar on the right while the books and order form scroll (digit/operator grid + ENTER, display, C to clear) — every key is a submit button handled in PHP; evaluates with normal `* /` before `+ -` precedence (no `eval`); ENTER can send the result to Quantity / Price / Cash Given via the dropdown under the display
 - **Tooltip** hover effects on book covers (Bootstrap tooltips)
 - **Dockerized** environment — no XAMPP or local PHP install needed
 

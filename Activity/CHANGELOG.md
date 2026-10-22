@@ -3,6 +3,21 @@
 All notable changes to this project are documented in this file.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) — dated, grouped by version.
 
+## [1.3.0] - 2026-10-22
+
+### Changed
+- Page layout is now two columns: book covers and the order form (details, discount options, buttons, Order List) scroll on the left, while the **calculator is pinned** in a sticky sidebar on the right (`.pos-sidebar`, `position: sticky` at ≥ 992px; it stacks below on narrow screens).
+- The order `<form>` now wraps the whole catalog + sidebar so the calculator keys still post with it; the form returns to `#order_details` after each submit.
+
+## [1.2.0] - 2026-10-07
+
+### Changed
+- Order form and calculator logic moved from JavaScript to PHP: new **`includes/book_pos.php`**, required at the top of all 5 pages.
+  - The order section is now a `<form method="post">`; every button (SAVE / UPDATE / NEW / CALCULATE CHANGE, calculator keys, ENTER, C) submits it and PHP computes the discounts, totals, change and calculator result.
+  - Saved order lines are stored in the PHP session (shared across the genre pages); the Order List table is rendered by PHP.
+  - The calculator's ENTER target is now chosen with a dropdown (`#calc_target`) instead of the last-focused field.
+- `js/book_pos.js` reduced to UI glue: clicking a book cover fills the name/price and asks PHP to recompute; changing the discount recomputes; clicking an Order List row selects it.
+
 ## [1.1.0] - 2026-10-06
 
 ### Added

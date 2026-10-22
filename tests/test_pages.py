@@ -205,6 +205,16 @@ class TestPosWiring(unittest.TestCase):
                     self.assertIn(f'id="{element_id}"', html,
                                   f"{genre}.php missing id={element_id}")
 
+    def test_page_uses_php_pos_logic(self):
+        self.assertTrue(os.path.isfile(os.path.join(BASE_DIR, "includes", "book_pos.php")))
+        for genre in GENRES:
+            with self.subTest(genre=genre):
+                html = read_page(genre)
+                self.assertTrue(html.startswith("<?php require __DIR__ . '/includes/book_pos.php'; ?>"))
+                self.assertIn('<form method="post"', html)
+                for action in ["calculate", "new", "save", "update", "calc_enter", "calc_clear"]:
+                    self.assertIn(f'name="action" value="{action}"', html)
+
     def test_script_references_existing_ids(self):
         with open(os.path.join(BASE_DIR, "js", "book_pos.js")) as f:
             js = f.read()
@@ -229,6 +239,20 @@ class TestPageConsistency(unittest.TestCase):
                 self.assertIn('class="row"', order_sections[genre])
                 self.assertIn('col-md-7', order_sections[genre])
                 self.assertIn('col-md-5', order_sections[genre])
+
+    def test_calculator_pinned_in_sidebar(self):
+        for genre in GENRES:
+            with self.subTest(genre=genre):
+                html = read_page(genre)
+                sidebar = re.search(r'<aside class="pos-sidebar calc_pad">.*?</aside>', html, re.DOTALL)
+                self.assertIsNotNone(sidebar, f"{genre}.php missing pinned calculator sidebar")
+                self.assertIn('id="calc_display"', sidebar.group(0))
+                self.assertIn('value="calc_enter"', sidebar.group(0))
+                # Sidebar sits beside the scrolling catalog + order form, all inside the one form
+                form = re.search(r'<form method="post".*?</form>', html, re.DOTALL).group(0)
+                self.assertLess(form.index('class="pic_group"'), form.index('class="pos-sidebar'))
+        with open(CSS_PATH) as f:
+            self.assertRegex(f.read(), r'\.pos-sidebar\s*\{[^}]*position:\s*sticky')
 
     def test_all_pages_link_to_same_css(self):
         for genre in GENRES:

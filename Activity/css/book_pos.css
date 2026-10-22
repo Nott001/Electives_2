@@ -141,13 +141,30 @@ body {
     margin-bottom: 8px;
 }
 
-/* ---------- Calculator pad ---------- */
-.calc_pad {
-    margin-top: 22px;
+/* ---------- Layout: catalog + order form scroll, calculator pinned right ---------- */
+.pos-sidebar {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fafafa;
+    border: 1px solid #e3e3e3;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px;
 }
 
+@media (min-width: 992px) {
+    .pos-sidebar {
+        position: sticky;
+        top: 20px;
+        margin-top: 0;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+    }
+}
+
+/* ---------- Calculator pad ---------- */
+
 .calc_pad h4 {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
     color: #2c3e50;
     margin-bottom: 10px;
@@ -157,7 +174,6 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
-    max-width: 260px;
 }
 
 .calc-grid .btn {
@@ -171,7 +187,6 @@ body {
 
 /* ---------- Calculator display ---------- */
 .calc-display-group {
-    max-width: 260px;
     margin-bottom: 8px;
 }
 
@@ -183,23 +198,27 @@ body {
     background-color: #f8f9fa !important;
 }
 
-.calc_pad h4 small {
-    font-size: 13px;
-    color: #6c757d;
-    font-weight: normal;
-}
-
 /* ---------- Order list ---------- */
 .order-list {
     font-size: 14px;
-}
-
-.order-list tbody tr[data-index] {
-    cursor: pointer;
 }
 
 .order-list .empty-row td {
     text-align: center;
     color: #888;
     font-style: italic;
+}
+
+/* ---------- PHP form helpers ---------- */
+.default-submit {
+    position: absolute;
+    left: -9999px;
+}
+
+.calc-target {
+    margin-bottom: 8px;
+}
+
+.order-list tbody tr:not(.empty-row) {
+    cursor: pointer;
 }
