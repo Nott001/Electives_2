@@ -254,6 +254,20 @@ class TestPageConsistency(unittest.TestCase):
         with open(CSS_PATH) as f:
             self.assertRegex(f.read(), r'\.pos-sidebar\s*\{[^}]*position:\s*sticky')
 
+    def test_page_has_theme_toggle(self):
+        for genre in GENRES:
+            with self.subTest(genre=genre):
+                html = read_page(genre)
+                self.assertIn('id="theme_toggle"', html)
+                # Saved theme is applied in <head>, before the stylesheet paints the page
+                head = html[:html.index("</head>")]
+                self.assertIn('localStorage.getItem("theme")', head)
+                self.assertLess(head.index('setAttribute("data-theme"'), head.index('href="css/book_pos.css"'))
+        with open(CSS_PATH) as f:
+            self.assertRegex(f.read(), r'\[data-theme="dark"\]\s*\{[^}]*--page-bg')
+        with open(os.path.join(BASE_DIR, "js", "book_pos.js")) as f:
+            self.assertIn('localStorage.setItem("theme"', f.read())
+
     def test_all_pages_link_to_same_css(self):
         for genre in GENRES:
             with self.subTest(genre=genre):

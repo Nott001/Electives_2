@@ -3,6 +3,14 @@
 All notable changes to this project are documented in this file.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) — dated, grouped by version.
 
+## [1.4.0] - 2026-10-27
+
+### Added
+- **Light / dark mode** on all 5 pages. A toggle button at the left of the top bar switches themes; the choice is saved in `localStorage` and carries across genre pages. First visit follows the OS `prefers-color-scheme` setting.
+  - Colours in `css/book_pos.css` are now CSS variables (`:root` for light, `[data-theme="dark"]` for dark), plus dark overrides for the Bootstrap 4 parts the pages use (inputs, Order List table, alerts, light buttons).
+  - A small inline script in each page's `<head>` applies the saved theme before the page paints, so the page does not flash light on every form submit.
+- `test_page_has_theme_toggle` in `tests/test_pages.py`.
+
 ## [1.3.0] - 2026-10-22
 
 ### Changed

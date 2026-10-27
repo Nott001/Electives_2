@@ -4,8 +4,47 @@
            mystery.php, nonfiction.php
 ============================================================ */
 
+/* ---------- Theme colours (light default, dark via <html data-theme="dark">) ---------- */
+:root {
+    color-scheme: light;
+    --page-bg: #efe9dc;
+    --surface: #fff;
+    --surface-alt: #fafafa;
+    --input-bg: #fff;
+    --input-readonly-bg: #e9ecef;
+    --text: #212529;
+    --text-strong: #2c2c2c;
+    --text-muted: #888;
+    --heading: #2c3e50;
+    --price: #c0392b;
+    --border: #ddd;
+    --border-soft: #e3e3e3;
+    --shadow: rgba(0, 0, 0, 0.16);
+    --card-shadow: rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --page-bg: #1b1a17;
+    --surface: #26241f;
+    --surface-alt: #2f2c26;
+    --input-bg: #1f1d19;
+    --input-readonly-bg: #34312a;
+    --text: #e8e4da;
+    --text-strong: #f3efe6;
+    --text-muted: #a39e93;
+    --heading: #9fb8d0;
+    --price: #ff8a7a;
+    --border: #45413a;
+    --border-soft: #3d3a33;
+    --shadow: rgba(0, 0, 0, 0.5);
+    --card-shadow: rgba(0, 0, 0, 0.7);
+}
+
 body {
-    background-color: #efe9dc;
+    background-color: var(--page-bg);
+    color: var(--text);
+    transition: background-color 0.2s ease, color 0.2s ease;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -20,8 +59,8 @@ body {
     margin-top: 40px;
     margin-bottom: 40px;
     padding: 40px 60px;
-    background-color: #fff;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: var(--surface);
+    box-shadow: var(--shadow) 0px 1px 4px;
 }
 
 .store_title {
@@ -29,7 +68,7 @@ body {
     font-size: 62px;
     font-family: Algerian, serif;
     font-weight: bold;
-    color: #2c2c2c;
+    color: var(--text-strong);
     letter-spacing: 2px;
     margin: 10px 0 25px;
 }
@@ -62,9 +101,9 @@ body {
 .pic_option {
     width: 170px;
     text-align: center;
-    background-color: #fff;
-    border: 10px solid #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+    background-color: var(--surface);
+    border: 10px solid var(--surface);
+    box-shadow: 0 0 5px var(--card-shadow);
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
@@ -96,30 +135,30 @@ body {
     display: block;
     font-size: 14px;
     font-weight: 600;
-    color: #333;
+    color: var(--text-strong);
     min-height: 36px;
 }
 
 .item_label .book_price {
     display: block;
     font-weight: bold;
-    color: #c0392b;
+    color: var(--price);
     font-size: 15px;
 }
 
 /* ---------- Order section ---------- */
 .order-section {
     margin-top: 45px;
-    border-top: 3px solid #2c3e50;
+    border-top: 3px solid var(--heading);
     padding-top: 25px;
 }
 
 .order-section h3 {
     font-size: 22px;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--heading);
     margin-bottom: 18px;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid var(--border);
     padding-bottom: 8px;
 }
 
@@ -145,8 +184,8 @@ body {
 .pos-sidebar {
     margin-top: 30px;
     padding: 20px;
-    background-color: #fafafa;
-    border: 1px solid #e3e3e3;
+    background-color: var(--surface-alt);
+    border: 1px solid var(--border-soft);
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px;
 }
@@ -166,7 +205,7 @@ body {
 .calc_pad h4 {
     font-size: 18px;
     font-weight: bold;
-    color: #2c3e50;
+    color: var(--heading);
     margin-bottom: 10px;
 }
 
@@ -195,7 +234,7 @@ body {
     font-family: "Courier New", monospace;
     font-size: 20px;
     font-weight: bold;
-    background-color: #f8f9fa !important;
+    background-color: var(--surface-alt) !important;
 }
 
 /* ---------- Order list ---------- */
@@ -205,7 +244,7 @@ body {
 
 .order-list .empty-row td {
     text-align: center;
-    color: #888;
+    color: var(--text-muted);
     font-style: italic;
 }
 
@@ -222,3 +261,77 @@ body {
 .order-list tbody tr:not(.empty-row) {
     cursor: pointer;
 }
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+    min-width: 92px;
+}
+
+/* ---------- Bootstrap 4 has no dark mode: recolour the parts these pages use ---------- */
+[data-theme="dark"] .form-control {
+    background-color: var(--input-bg);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .form-control:focus {
+    background-color: var(--input-bg);
+    color: var(--text);
+}
+
+[data-theme="dark"] .form-control[readonly] {
+    background-color: var(--input-readonly-bg);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .table {
+    color: var(--text);
+}
+
+[data-theme="dark"] .table td,
+[data-theme="dark"] .table th,
+[data-theme="dark"] .table thead th {
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .table .thead-light th {
+    background-color: var(--surface-alt);
+    color: var(--text);
+    border-color: var(--border);
+}
+
+[data-theme="dark"] .table-hover tbody tr:hover,
+[data-theme="dark"] .table-active,
+[data-theme="dark"] .table-active > td {
+    background-color: rgba(255, 255, 255, 0.07);
+    color: var(--text);
+}
+
+[data-theme="dark"] .btn-link {
+    color: #7fb4ff;
+}
+
+[data-theme="dark"] .btn-light {
+    background-color: #3a362f;
+    color: var(--text);
+}
+
+[data-theme="dark"] .btn-light:hover {
+    background-color: #47423a;
+}
+
+[data-theme="dark"] .btn-dark {
+    background-color: #4a4f57;
+    border-color: #4a4f57;
+}
+
+[data-theme="dark"] .border {
+    border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .alert-success { background-color: #1e3a2a; color: #a8e6bf; border-color: #2d5a40; }
+[data-theme="dark"] .alert-danger  { background-color: #3d1f22; color: #f5b5bb; border-color: #5e2d32; }
+[data-theme="dark"] .alert-info    { background-color: #1b3440; color: #a6dcef; border-color: #2a5163; }

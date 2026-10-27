@@ -19,6 +19,12 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <!-- Applies the saved light/dark theme before the page paints (no flash) -->
+    <script>
+      document.documentElement.setAttribute("data-theme",
+        localStorage.getItem("theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+    </script>
+
     <!-- Calling or Accessing the CSS from book_pos.css file inside the css folder -->
     <link rel="stylesheet" href="css/book_pos.css">
 </head>
@@ -27,6 +33,7 @@
     <h1 class="store_title">Robert's Book Store</h1>
 
     <div class="topbar">
+        <button type="button" class="btn btn-outline-secondary theme-toggle" id="theme_toggle" aria-pressed="false">Dark</button>
         <button type="button" class="btn btn-danger">SEARCH</button>
         <select class="form-control genre_select" onchange="if(this.value) window.location.href=this.value;">
             <option value="">----------------select genre</option>

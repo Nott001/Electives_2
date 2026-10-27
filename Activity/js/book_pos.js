@@ -3,7 +3,8 @@
   Used by: fiction.php, classics.php, scifi.php,
            mystery.php, nonfiction.php
   All calculations happen in PHP (includes/book_pos.php);
-  this only fills in fields and submits the form.
+  this only fills in fields, submits the form and
+  switches the light/dark theme.
 ============================================================ */
 
 $(function () {
@@ -29,5 +30,20 @@ $(function () {
     // Clicking anywhere on a saved row selects it for UPDATE
     $("#order_list").on("click", "tbody tr", function (e) {
         if (!$(e.target).is(".select-row")) $(this).find(".select-row").trigger("click");
+    });
+
+    // Light / dark mode toggle; the choice is kept in localStorage across pages
+    var $toggle = $("#theme_toggle");
+    function showTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        $toggle.text(theme === "dark" ? "Light" : "Dark")
+            .attr("aria-pressed", theme === "dark")
+            .attr("title", "Switch to " + (theme === "dark" ? "light" : "dark") + " mode");
+    }
+    showTheme(document.documentElement.getAttribute("data-theme") || "light");
+    $toggle.on("click", function () {
+        var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        localStorage.setItem("theme", next);
+        showTheme(next);
     });
 });
